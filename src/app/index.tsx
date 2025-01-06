@@ -5,7 +5,9 @@ import welcomeBackground from 'assets/auth/welcome-background.png'
 import facebookIcon from 'assets/auth/facebook.png'
 import googleIcon from 'assets/auth/google.png'
 import { LinearGradient } from "expo-linear-gradient"
+import { Link, Redirect } from "expo-router"
 import TextBetweenLine from "@/components/button/text.between.line"
+import OptionDirection from "@/components/button/option.direction"
 
 const styles = StyleSheet.create({
   container: {
@@ -41,15 +43,15 @@ const styles = StyleSheet.create({
     gap: 20
   },
 
-  btnSocialMedia: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 30
-  }
-
 })
 
 const WelcomePage = () => {
+  if (true) {
+    return(
+      <Redirect href={'/(auth)/signup'}/>
+    )
+  }
+
   return (
     <ImageBackground
       style={{ flex: 1 }}
@@ -68,10 +70,14 @@ const WelcomePage = () => {
           </View>
 
           <View style={styles.welcomeBtn}>
-            <TextBetweenLine title="Đăng nhập với" />
+            <TextBetweenLine title="Đăng nhập với" lineColor="rgba(255, 255, 255, 0.5)" textColor="white" />
 
             <View style= {{ gap: 24, marginTop: 16 }}>
-              <View style={styles.btnSocialMedia}>
+              <View style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                gap: 30
+              }}>
                 <ShareButton
                   onPress={() => alert('Đăng nhập thành công với Facebook')}
                   title="Facebook "
@@ -110,10 +116,12 @@ const WelcomePage = () => {
                 />
               </View>
 
-              <View style={{ flexDirection: 'row', gap: 6, justifyContent: 'center' }}>
-                <Text style={{ textAlign: "center", color: '#FFFFFF' }}>Chưa có tài khoản?</Text>
-                <Text style={{ textAlign: "center", color: '#FFFFFF', textDecorationLine: 'underline' }}>Đăng ký</Text>
-              </View>
+              <OptionDirection
+                url={'/(auth)/signup'}
+                textIntro="Chưa có tài khoản?"
+                textDirection="Đăng ký"
+              />
+
             </View>
           </View>
         </View>
