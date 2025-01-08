@@ -8,11 +8,17 @@ const styles = StyleSheet.create({
 
 })
 
-const SocialButton = () => {
+interface IProps {
+  title: string
+}
+
+const SocialButton = (props: IProps) => {
+  const { title = '' } = props
+
   return (
     <View style={{ gap: 10 }}>
       <TextBetweenLine
-        title="Đăng nhập với"
+        title={title}
         lineColor="rgba(179, 179, 179, 0.5)"
         textColor="rgba(91, 91, 94, 1)"
       />
@@ -26,14 +32,24 @@ const SocialButton = () => {
             onPress={() => alert('Đăng nhập thành công với Facebook')}
             title="Facebook "
             textStyle={{ textTransform: 'uppercase', fontWeight: 500, fontSize: 14 }}
-            btnStyle={{ justifyContent: 'center', borderRadius: 30, backgroundColor: '#FFFFFF' }}
+            btnStyle={{
+              justifyContent: 'center',
+              borderRadius: 30,
+              backgroundColor: '#FFFFFF',
+              filter: 'drop-shadow(19px 19px 37px #D3D1D8)'
+            }}
             icons={ <Image source={facebookIcon} />}
           />
           <ShareButton
             onPress={() => alert('Đăng nhập thành công với Google')}
             title="Google"
             textStyle={{ textTransform: 'uppercase', fontWeight: 500, fontSize: 14 }}
-            btnStyle={{ justifyContent: 'center', borderRadius: 30, backgroundColor: '#FFFFFF' }}
+            btnStyle={{
+              justifyContent: 'center',
+              borderRadius: 30,
+              backgroundColor: '#FFFFFF',
+              filter: 'drop-shadow(19px 19px 37px #D3D1D8)'
+            }}
             icons={ <Image source={googleIcon} />}
           />
         </View>

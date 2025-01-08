@@ -18,3 +18,9 @@ export const resendAPI = async (email: string) => {
   const url = '/api/v1/auth/verify-email'
   return await axios.post<IBackendRes<IRegister>>(url, { email })
 }
+
+export const signinAPI = async (username: string, password: string) => {
+  console.log('call api')
+  const url = '/api/v1/auth/login'
+  return await axios.post<IBackendRes<IRegister>>(url, { username, password })
+}

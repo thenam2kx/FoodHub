@@ -1,6 +1,12 @@
 import { APP_COLOR } from "@/theme/theme"
 import { useState } from "react"
-import { KeyboardTypeOptions, StyleSheet, Text, TextInput, View } from "react-native"
+import {
+  KeyboardTypeOptions,
+  StyleSheet,
+  TextInput,
+  Text,
+  View
+} from "react-native"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 const styles = StyleSheet.create({
@@ -28,51 +34,54 @@ const styles = StyleSheet.create({
 })
 
 interface Iprops {
-  title?: string
   keyboardType?: KeyboardTypeOptions
   secureTextEntry?: boolean
+  setValue?: (v: any) => void
+  onChangeText?: any
+  title?: string
   value: any
-  setValue: (v: any) => void
+  onBlur?: any
+  error?: any
 }
 
 const ShareInput = (props: Iprops) => {
   const {
     title,
     value,
-    setValue,
     keyboardType,
-    secureTextEntry = false
+    secureTextEntry = false,
+    onChangeText,
+    onBlur,
+    error
   } = props
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false)
 
   return (
     <View style={styles.inputGroup}>
-      {
-        title &&
-        <Text style={styles.inputLabel}>{title}</Text>
-      }
+      { title && <Text style={styles.inputLabel}>{title}</Text> }
       <View>
         <TextInput
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
           value={value}
-          onChangeText={(text) => setValue(text)}
-          style={[styles.inputForm, { borderColor: isFocus ? APP_COLOR.PRIMARY : '#d0d0d0' }]}
+          onChangeText={onChangeText}
+          onFocus={() => setIsFocus(true)}
+          onBlur={(e) => { if ( onBlur ) onBlur(e); setIsFocus(false) }}
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry && !isShowPassword}
+          style={[styles.inputForm, { borderColor: isFocus ? APP_COLOR.PRIMARY : '#d0d0d0' }]}
         />
         {
           secureTextEntry &&
           <FontAwesome5
-            name={isShowPassword ? 'eye' : 'eye-slash' }
-            size={16}
-            color="black"
-            style={styles.eye}
-            onPress={() => setIsShowPassword(!isShowPassword)}
+          name={isShowPassword ? 'eye' : 'eye-slash' }
+          size={16}
+          color="black"
+          style={styles.eye}
+          onPress={() => setIsShowPassword(!isShowPassword)}
           />
         }
       </View>
+      { error && <Text style={{ color: APP_COLOR.PRIMARY,  fontSize: 14 }}>{error}</Text> }
     </View>
   )
 }
