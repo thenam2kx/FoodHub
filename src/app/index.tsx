@@ -1,13 +1,13 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
 import ShareButton from "components/button/share.button"
+import { LinearGradient } from "expo-linear-gradient"
+import { Redirect } from "expo-router"
 import { APP_COLOR } from "theme/theme"
 import welcomeBackground from 'assets/auth/welcome-background.png'
-import facebookIcon from 'assets/auth/facebook.png'
-import googleIcon from 'assets/auth/google.png'
-import { LinearGradient } from "expo-linear-gradient"
-import { Link, Redirect } from "expo-router"
 import TextBetweenLine from "@/components/button/text.between.line"
 import OptionDirection from "@/components/button/option.direction"
+import facebookIcon from 'assets/auth/facebook.png'
+import googleIcon from 'assets/auth/google.png'
 
 const styles = StyleSheet.create({
   container: {
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
 })
 
 const WelcomePage = () => {
-  if (true) {
-    return(
-      <Redirect href={'/(auth)/verify'}/>
-    )
-  }
+  // if (true) {
+  //   return(
+  //     <Redirect href={'/(auth)/signup'}/>
+  //   )
+  // }
 
   return (
     <ImageBackground

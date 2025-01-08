@@ -8,6 +8,7 @@ interface IProps {
   styleTextIntro?: StyleProp<TextStyle>
   textDirection: string
   styleTextDirection?: StyleProp<TextStyle>
+  onPress?: () => void
 }
 
 const OptionDirection = (props: IProps) => {
@@ -18,6 +19,7 @@ const OptionDirection = (props: IProps) => {
     textDirection,
     styleContainer,
     styleTextDirection,
+    onPress
   } = props
 
   return (
@@ -32,7 +34,7 @@ const OptionDirection = (props: IProps) => {
         {textIntro}
       </Text>
       <Link href={url}>
-        <Text style={[
+        <Text onPress={onPress} style={[
           { textAlign: "center", color: '#FFFFFF', textDecorationLine: 'underline' },
           styleTextDirection
         ]}>

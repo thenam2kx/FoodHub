@@ -29,19 +29,19 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <RootSiblingParent>
-          <SafeAreaView style={{ flex: 1 }}>
-            <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
-              <Stack.Screen name="(auth)/verify" options={{ headerShown: false }} />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-          </SafeAreaView>
-          <StatusBar style="auto" />
-        </RootSiblingParent>
+    <RootSiblingParent>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/verify" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </SafeAreaView>
+        <StatusBar style="auto" />
       </ThemeProvider>
+    </RootSiblingParent>
   );
 }
