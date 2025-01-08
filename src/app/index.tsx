@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
 import ShareButton from "components/button/share.button"
 import { LinearGradient } from "expo-linear-gradient"
-import { Redirect } from "expo-router"
+import { Redirect, router } from "expo-router"
 import { APP_COLOR } from "theme/theme"
 import welcomeBackground from 'assets/auth/welcome-background.png'
 import TextBetweenLine from "@/components/button/text.between.line"
@@ -46,11 +46,6 @@ const styles = StyleSheet.create({
 })
 
 const WelcomePage = () => {
-  // if (true) {
-  //   return(
-  //     <Redirect href={'/(auth)/signup'}/>
-  //   )
-  // }
 
   return (
     <ImageBackground
@@ -96,7 +91,7 @@ const WelcomePage = () => {
 
               <View>
                 <ShareButton
-                  onPress={() => alert('Đăng nhập thành công với Email')}
+                  onPress={() => router.navigate('/(auth)/signin')}
                   title="Đăng nhập với email"
                   pressStyle={{ alignSelf: 'stretch' }}
                   textStyle={{

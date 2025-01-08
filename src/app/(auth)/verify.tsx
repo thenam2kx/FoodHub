@@ -35,7 +35,7 @@ const VerifyPage = () => {
 
 
   // Get email from url
-  const { email } = useLocalSearchParams()
+  const { email, isLogin } = useLocalSearchParams()
 
   const otpRef = useRef<OTPTextView>(null)
 
@@ -59,7 +59,11 @@ const VerifyPage = () => {
         setIsSubmit(false)
 
         // Redirect to signin
-        router.replace('/(auth)/signin')
+        if (isLogin) {
+          router.replace('/(tabs)')
+        } else {
+          router.replace('/(auth)/signin')
+        }
 
       } else {
         ToastAndroid.show(res.message as string, ToastAndroid.SHORT)
@@ -158,7 +162,7 @@ const VerifyPage = () => {
               ) : (
                 <OptionDirection
                   onPress={() => handleResendCode()}
-                  url={'/(auth)/signup'}
+                  // url={'/(auth)/signup'}
                   textIntro="Không nhận được mã xác nhận?"
                   textDirection="Gửi lại"
                   styleContainer={{ marginVertical: 10 }}

@@ -13,7 +13,7 @@ interface IProps {
 
 const OptionDirection = (props: IProps) => {
   const {
-    url,
+    url = '/',
     textIntro,
     styleTextIntro,
     textDirection,
