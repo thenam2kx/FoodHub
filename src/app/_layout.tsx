@@ -29,10 +29,22 @@ export default function RootLayout() {
     return null;
   }
 
+  const navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
+  };
+
+
   return (
     <GestureHandlerRootView>
       <RootSiblingParent>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <ThemeProvider
+          value={navTheme}
+          // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
           <SafeAreaView style={{ flex: 1 }}>
             <Stack>
               <Stack.Screen name="index" options={{ headerShown: false }} />

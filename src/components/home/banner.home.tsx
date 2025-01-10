@@ -1,16 +1,16 @@
-import * as React from "react";
-import { Dimensions, Image, Text, View } from "react-native";
-import { useSharedValue } from "react-native-reanimated";
+import * as React from "react"
+import { Dimensions, Image, Text, View } from "react-native"
+import { useSharedValue } from "react-native-reanimated"
 import Carousel, {
   ICarouselInstance,
   Pagination,
-} from "react-native-reanimated-carousel";
-
+} from "react-native-reanimated-carousel"
 import banner1 from '@/assets/homepage/banner/bn1.jpg'
 import banner2 from '@/assets/homepage/banner/bn2.jpg'
 import banner3 from '@/assets/homepage/banner/bn3.jpg'
+import { APP_COLOR } from "@/theme/theme"
 
-const data = [...new Array(6).keys()];
+
 const sliders = [
   { id: 1, source: banner1 },
   { id: 2, source: banner2 },
@@ -34,7 +34,7 @@ const  BannerHome = () => {
   };
 
   return (
-    <View>
+    <View style={{ paddingBottom: 4 }}>
       <Carousel
         ref={ref}
         width={width}
@@ -50,6 +50,7 @@ const  BannerHome = () => {
                 width: width,
                 height: width / 3.7,
                 resizeMode: 'cover',
+                borderRadius: 6
             }}
             source={item.source}
           />
@@ -59,8 +60,17 @@ const  BannerHome = () => {
       <Pagination.Basic
         progress={progress}
         data={sliders}
-        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50, height: 6, width: 6 }}
-        containerStyle={{ gap: 5, marginTop: 10 }}
+        dotStyle={{
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: 50,
+          height: 6,
+          width: 6
+        }}
+        activeDotStyle={{
+					overflow: "hidden",
+					backgroundColor: APP_COLOR.PRIMARY,
+				}}
+        containerStyle={{ gap: 5, marginTop: -10 }}
         onPress={onPressPagination}
       />
     </View>

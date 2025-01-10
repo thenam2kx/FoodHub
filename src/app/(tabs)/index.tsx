@@ -2,14 +2,14 @@ import { StyleSheet, View, Text, ScrollView, FlatList } from 'react-native'
 import CustomFlatList from '@/components/CustomFlatList/CustomFlatList'
 import HeaderHome from '@/components/home/header.home'
 import TopListHome from '@/components/home/topList.home'
+import CollectionHome from '@/components/home/collection.home'
 
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ecf0f1",
-    flex: 1,
     justifyContent: "center",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   header: {
     borderColor: "red",
@@ -18,13 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     width: "100%"
   },
-  item: {
-    borderColor: "green",
-    borderWidth: 5,
-    height: 100,
-    marginBottom: 6,
-    width: "100%"
-  },
+
   list: {
     overflow: "hidden"
   },
@@ -34,7 +28,12 @@ const styles = StyleSheet.create({
   },
 })
 
-const data = Array(10).fill(1)
+const data = [
+  { key: 1, name: "Top Quán Rating 5* tuần này", ref: "" },
+  { key: 2, name: "Quán Mới Lên Sàn", ref: "" },
+  { key: 3, name: "Ăn Thỏa Thích, Freeship 0Đ", ref: "" },
+]
+
 
 
 const HomeScreen = () => {
@@ -44,7 +43,7 @@ const HomeScreen = () => {
       <CustomFlatList
         data={data}
         style={styles.list}
-        renderItem={() => <View style={styles.item} />}
+        renderItem={({ item }) => <CollectionHome name={item.name} />}
         HeaderComponent={<></>}
         // HeaderComponent={<View style={styles.header}><HeaderHome /></View>}
         StickyElementComponent={<View style={styles.sticky}><HeaderHome /></View>}

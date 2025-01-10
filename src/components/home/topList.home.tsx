@@ -2,14 +2,6 @@ import React from 'react'
 import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import BannerHome from './banner.home'
 
-const styles = StyleSheet.create({
-  topList: {
-    borderColor: "orange",
-    borderWidth: 1,
-    marginBottom: 6,
-  }
-})
-
 const data1 = [
   { key: 1, name: "Hot Deal", source: require("@/assets/homepage/icons/flash-deals.png") },
   { key: 2, name: "Quán Ngon", source: require("@/assets/homepage/icons/nice-shop.png") },
@@ -37,10 +29,10 @@ const data1 = [
 const TopListHome = () => {
   return (
     <>
-      <View style={{ marginTop: 0, marginBottom: 10 }}>
+      <View>
         <BannerHome />
       </View>
-      <View>
+      <View style={{ marginVertical: 10, backgroundColor: '#FFF' }}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -56,7 +48,7 @@ const TopListHome = () => {
             renderItem={({ item, index }) => {
               return (
                 <View style={{
-                  padding: 5,
+                  padding: 10,
                   width: 100,
                   alignItems: "center",
                 }}>
