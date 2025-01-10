@@ -29,12 +29,8 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   sticky: {
-    backgroundColor: "#2555FF50",
-    borderColor: "blue",
-    borderWidth: 5,
-    height: 100,
+    backgroundColor: "#fff",
     marginBottom: 6,
-    width: "100%"
   },
 })
 

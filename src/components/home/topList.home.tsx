@@ -37,7 +37,7 @@ const data1 = [
 const TopListHome = () => {
   return (
     <>
-      <View style={{ marginTop: 110, marginBottom: 10 }}>
+      <View style={{ marginTop: 0, marginBottom: 10 }}>
         <BannerHome />
       </View>
       <View>
