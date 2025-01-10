@@ -162,7 +162,7 @@ const VerifyPage = () => {
               ) : (
                 <OptionDirection
                   onPress={() => handleResendCode()}
-                  // url={'/(auth)/signup'}
+                  url={'/(auth)/signup'}
                   textIntro="Không nhận được mã xác nhận?"
                   textDirection="Gửi lại"
                   styleContainer={{ marginVertical: 10 }}
