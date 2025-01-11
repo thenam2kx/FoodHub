@@ -16,6 +16,8 @@ import authBackground from 'assets/auth/background.png'
 import ShareButton from "@/components/button/share.button"
 import SocialButton from "@/components/button/social.button"
 import OptionDirection from "@/components/button/option.direction"
+import { useCurrentApp } from "@/context/app.context"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const styles = StyleSheet.create({
   container: {
@@ -37,12 +39,15 @@ const styles = StyleSheet.create({
 
 const SigninPage = () => {
   const [isLoading, setLoading] = useState<boolean>(false)
+  const { setAppState } = useCurrentApp()
 
   const handleSignin = async (email: string, password: string) => {
     setLoading(true)
     try {
       const res = await signinAPI(email, password)
       if (res.data) {
+        await AsyncStorage.setItem('access_token', res.data.access_token)
+        setAppState(res.data)
         router.replace('/(tabs)')
       } else {
         const errorMessage = Array.isArray(res.message) ? res.message[0] : res.message

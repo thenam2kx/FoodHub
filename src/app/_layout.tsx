@@ -9,6 +9,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import  {  RootSiblingParent  }  from  'react-native-root-siblings'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AppProvider from '@/context/app.context';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,22 +42,25 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView>
       <RootSiblingParent>
-        <ThemeProvider
-          value={navTheme}
-          // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        >
-          <SafeAreaView style={{ flex: 1 }}>
-            <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
-              <Stack.Screen name="(auth)/verify" options={{ headerShown: false }} />
-              <Stack.Screen name="(auth)/signin" options={{ headerShown: false }} />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-          </SafeAreaView>
-          <StatusBar style="auto" />
-        </ThemeProvider>
+        <AppProvider>
+          <ThemeProvider
+            value={navTheme}
+            // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+          >
+            <SafeAreaView style={{ flex: 1 }}>
+              <Stack>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
+                <Stack.Screen name="(auth)/verify" options={{ headerShown: false }} />
+                <Stack.Screen name="(auth)/signin" options={{ headerShown: false }} />
+                <Stack.Screen name="(auth)/welcome" options={{ headerShown: false }} />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </SafeAreaView>
+            <StatusBar style="auto" />
+          </ThemeProvider>
+        </AppProvider>
       </RootSiblingParent>
     </GestureHandlerRootView>
   );
