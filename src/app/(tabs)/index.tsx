@@ -29,9 +29,24 @@ const styles = StyleSheet.create({
 })
 
 const data = [
-  { key: 1, name: "Top Quán Rating 5* tuần này", ref: "" },
-  { key: 2, name: "Quán Mới Lên Sàn", ref: "" },
-  { key: 3, name: "Ăn Thỏa Thích, Freeship 0Đ", ref: "" },
+  {
+    key: 1,
+    name: "Top Quán Rating 5* tuần này",
+    description: 'Gợi ý quán được tín đồ ẩm thực đánh giá 5*',
+    refAPI: "top-rating"
+  },
+  {
+    key: 2,
+    name: "Quán Mới Lên Sàn",
+    description: 'Khám phá ngay hàng loạt quán mới cực ngon.',
+    refAPI: "newcomer"
+  },
+  {
+    key: 3,
+    name: "Ăn Thỏa Thích, Freeship 0Đ",
+    description: 'Bánh ngọt, chân gà, bánh tráng trộn... Freeship.',
+    refAPI: "top-freeship"
+  },
 ]
 
 
@@ -43,7 +58,13 @@ const HomeScreen = () => {
       <CustomFlatList
         data={data}
         style={styles.list}
-        renderItem={({ item }) => <CollectionHome name={item.name} />}
+        renderItem={({ item }) => (
+          <CollectionHome
+            name={item.name}
+            description={item.description}
+            refAPI={item.refAPI}
+          />
+        )}
         HeaderComponent={<></>}
         // HeaderComponent={<View style={styles.header}><HeaderHome /></View>}
         StickyElementComponent={<View style={styles.sticky}><HeaderHome /></View>}
