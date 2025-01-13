@@ -55,6 +55,7 @@ export default function RootLayout() {
                 <Stack.Screen name="(auth)/signin" options={{ headerShown: false }} />
                 <Stack.Screen name="(auth)/welcome" options={{ headerShown: false }} />
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="product/[id]" options={{ headerShown: false }} />
                 <Stack.Screen name="+not-found" />
               </Stack>
             </SafeAreaView>

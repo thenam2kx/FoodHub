@@ -53,3 +53,8 @@ export const printAsyncStorage = () => {
     });
   });
 };
+
+export const getRestaurantByIdAPI = async (id: string) => {
+  const url = `/api/v1/restaurants/${id}`;
+  return await axios.get<IBackendRes<IRestaurant>>(url);
+};
