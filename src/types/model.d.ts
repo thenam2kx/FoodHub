@@ -87,6 +87,9 @@ declare global {
         [key: string]: {
           quantity: number;
           data: IMenuItem;
+          extra?: {
+            [key: string]: number
+          }
         };
       };
     };

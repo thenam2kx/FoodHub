@@ -107,6 +107,18 @@ export default function RootLayout() {
                     presentation: 'transparentModal',
                   }}
                 />
+                <Stack.Screen
+                  name="product/update.modal"
+                  options={{
+                    headerShown: false,
+                    animation: 'fade',
+                    presentation: 'transparentModal',
+                  }}
+                />
+                <Stack.Screen
+                  name="product/order"
+                  options={{ headerTitle: 'Xác nhận đơn hàng' }}
+                />
                 <Stack.Screen name="+not-found" />
               </Stack>
             </SafeAreaView>

@@ -4,7 +4,6 @@ import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { APP_COLOR } from "@/theme/theme";
 import { useCurrentApp } from "@/context/app.context";
-import ItemQuantity from "@/components/product/order/item.quantity";
 import { useEffect, useState } from "react";
 import { currencyFormatter } from "@/utils/helper";
 import Feather from "@expo/vector-icons/Feather";
@@ -31,6 +30,7 @@ const CreateModal = () => {
       const total = quantity;
       const item = menuItem!
       const option = menuItem.options[selectIndex]
+      const keyOption = `${option.title}-${option.description}`;
 
       if (!cart[restaurant?._id]) {
         //chưa tồn tại cửa hàng => khởi tạo cửa hàng
@@ -50,14 +50,39 @@ const CreateModal = () => {
         cart[restaurant._id].items[item._id] = {
           data: menuItem,
           quantity: 0,
+          extra: {
+            [keyOption]: 0
+          }
         };
       }
 
-      const currentQuantity =
-        cart[restaurant._id].items[item._id].quantity + total;
+      //check options đã từng thêm vào chưa
+      if (cart[restaurant._id].items[item._id]) {
+        const extra = cart[restaurant._id].items[item._id].extra
+        if (extra && !extra[keyOption]) {
+          cart[restaurant._id].items[item._id] = {
+            ...cart[restaurant._id].items[item._id],
+            extra: {
+              ...cart[restaurant._id].items[item._id].extra,
+              [keyOption]: 0
+            }
+          }
+        }
+      }
+
+      const currentQuantity = cart[restaurant._id].items[item._id].quantity + total;
+
+      const i = cart[restaurant._id].items[item._id];
+      let currentExtraQuantity = 0;
+      if (i.extra && i.extra?.[keyOption] !== null) currentExtraQuantity = i.extra[keyOption] + total;
+
       cart[restaurant._id].items[item._id] = {
         data: menuItem,
         quantity: currentQuantity,
+        extra: {
+          ...cart[restaurant._id].items[item._id].extra,
+          [keyOption]: currentExtraQuantity
+        }
       };
 
       if (currentQuantity <= 0) {
@@ -70,11 +95,11 @@ const CreateModal = () => {
 
   useEffect(() => {
     if (restaurant && menuItemId) {
-      for (let i = 0; i <= restaurant.menu.length; i++) {
+      for (let i = 0; i < restaurant.menu.length; i++) {
         const menu = restaurant.menu[i];
 
         let check = false;
-        for (let j = 0; j <= menu.menuItem.length; j++) {
+        for (let j = 0; j < menu.menuItem.length; j++) {
           if (menu.menuItem[j]._id === menuItemId) {
             check = true;
             setMenuItem(menu.menuItem[j]);

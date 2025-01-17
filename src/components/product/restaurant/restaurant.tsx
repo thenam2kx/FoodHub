@@ -250,15 +250,6 @@ const Restaurant = () => {
         renderItem={({ item, index }: { item: any; index: any }) => {
           const menuItem = item as IMenuItem;
           return (
-            // <TouchableOpacity onPress={() => alert("render item sections")}>
-            //   <View style={{ paddingHorizontal: 10, backgroundColor: "white" }}>
-            //     <View style={{ backgroundColor: "pink", height: 50 }}>
-            //       <Text>
-            //         {menuItem.title}
-            //       </Text>
-            //     </View>
-            //   </View>
-            // </TouchableOpacity>
             <ItemQuantity menuItem={menuItem} restaurant={restaurant} isModal={false} />
           );
         }}
