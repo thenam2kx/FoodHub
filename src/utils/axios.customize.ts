@@ -8,6 +8,7 @@ import { Platform } from "react-native"
 
 const instance = axios.create({
   baseURL: process.env.EXPO_PUBLIC_API_URL,
+  timeout: 60 * 1000
 });
 
 // Add a request interceptor

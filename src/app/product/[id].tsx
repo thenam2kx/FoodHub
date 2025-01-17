@@ -1,4 +1,5 @@
 import Restaurant from "@/components/product/restaurant/restaurant"
+import { useCurrentApp } from "@/context/app.context"
 import { getRestaurantByIdAPI } from "@/utils/api"
 import { useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
@@ -9,8 +10,10 @@ const { height: sHeight, width: sWidth } = Dimensions.get('window');
 
 const ProductPage = () => {
   const { id } = useLocalSearchParams()
-  const [restaurant, setRestaurant] = useState<IRestaurant | null>(null)
+  // const [restaurant, setRestaurant] = useState<IRestaurant | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+
+  const { restaurant, setRestaurant } = useCurrentApp()
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -30,7 +33,7 @@ const ProductPage = () => {
       {
         isLoading === false
           ?
-          <Restaurant restaurant={restaurant} />
+          <Restaurant />
           :
           <ContentLoader
             speed={2}
