@@ -1,5 +1,4 @@
-import { getBaseUrlBackend } from "@/utils/helper";
-import { currencyFormatter } from "@/utils/helper";
+import { currencyFormatter, getBaseUrlBackend } from "@/utils/helper";
 import { APP_COLOR } from "@/theme/theme";
 import { Image, Pressable, Text, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -8,8 +7,8 @@ import { router } from "expo-router";
 
 interface IProps {
   menuItem: IMenuItem;
-  restaurant: IRestaurant | null
-  isModal: boolean
+  restaurant: IRestaurant | null;
+  isModal: boolean;
 }
 
 const ItemQuantity = (props: IProps) => {
@@ -151,4 +150,5 @@ const ItemQuantity = (props: IProps) => {
     </View>
   );
 };
+
 export default ItemQuantity;

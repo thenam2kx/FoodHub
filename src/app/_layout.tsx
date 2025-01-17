@@ -99,6 +99,14 @@ export default function RootLayout() {
                   name="product/[id]"
                   options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                  name="product/create.modal"
+                  options={{
+                    headerShown: false,
+                    animation: 'fade',
+                    presentation: 'transparentModal',
+                  }}
+                />
                 <Stack.Screen name="+not-found" />
               </Stack>
             </SafeAreaView>
