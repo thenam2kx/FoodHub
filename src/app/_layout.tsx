@@ -16,6 +16,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AppProvider from "@/context/app.context";
 import { Button, View } from "react-native";
 import { Text } from "react-native";
+import { APP_COLOR } from "@/theme/theme";
 
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   return (
@@ -76,7 +77,10 @@ export default function RootLayout() {
             // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           >
             <SafeAreaView style={{ flex: 1 }}>
-              <Stack>
+              <Stack screenOptions={{
+                headerTintColor: APP_COLOR.PRIMARY,
+                headerTitleStyle: { color: 'black' }
+              }}>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
                 <Stack.Screen
                   name="(auth)/signup"
@@ -122,7 +126,7 @@ export default function RootLayout() {
                 <Stack.Screen name="+not-found" />
               </Stack>
             </SafeAreaView>
-            <StatusBar style="auto" />
+            {/* <StatusBar style="auto" /> */}
           </ThemeProvider>
         </AppProvider>
       </RootSiblingParent>

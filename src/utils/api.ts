@@ -58,3 +58,8 @@ export const getRestaurantByIdAPI = async (id: string) => {
   const url = `/api/v1/restaurants/${id}`;
   return await axios.get<IBackendRes<IRestaurant>>(url);
 };
+
+export const placeOrderAPI = (data: any) => {
+  const url = `/api/v1/orders`;
+  return axios.post<IBackendRes<IUserSignin>>(url, { ...data });
+}
