@@ -8,12 +8,65 @@ import ItemQuantity from "@/components/product/order/item.quantity";
 import { useEffect, useState } from "react";
 import { currencyFormatter } from "@/utils/helper";
 import Feather from "@expo/vector-icons/Feather";
+import ItemSinger from "@/components/product/order/item.singer";
 
 const CreateModal = () => {
-  const { restaurant } = useCurrentApp();
+  const { restaurant, cart, setCart } = useCurrentApp();
   const { menuItemId } = useLocalSearchParams();
 
   const [menuItem, setMenuItem] = useState<IMenuItem | null>(null);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [selectIndex, setSelectIndex] = useState<number>(0);
+
+  const handlePressItem = (item: IMenuItem, action: "MINUS" | "PLUS") => {
+    if (action === 'MINUS' && quantity === 1) return
+
+    const total = action === 'MINUS' ? -1 : 1
+    setQuantity((prev: number) => prev + total)
+
+  }
+
+  const handleAddCart = () => {
+    if (restaurant?._id && menuItem) {
+      const total = quantity;
+      const item = menuItem!
+      const option = menuItem.options[selectIndex]
+
+      if (!cart[restaurant?._id]) {
+        //chưa tồn tại cửa hàng => khởi tạo cửa hàng
+        cart[restaurant._id] = {
+          sum: 0,
+          quantity: 0,
+          items: {},
+        };
+      }
+
+      //xử lý sản phẩm
+      cart[restaurant._id].sum = cart[restaurant._id].sum + total * (item.basePrice + option.additionalPrice);
+      cart[restaurant._id].quantity = cart[restaurant._id].quantity + total;
+
+      //check sản phẩm đã từng thêm vào chưa
+      if (!cart[restaurant._id].items[item._id]) {
+        cart[restaurant._id].items[item._id] = {
+          data: menuItem,
+          quantity: 0,
+        };
+      }
+
+      const currentQuantity =
+        cart[restaurant._id].items[item._id].quantity + total;
+      cart[restaurant._id].items[item._id] = {
+        data: menuItem,
+        quantity: currentQuantity,
+      };
+
+      if (currentQuantity <= 0) {
+        delete cart[restaurant._id].items[item._id];
+      }
+      setCart((prevState: any) => ({ ...prevState, cart })); //merge state
+      router.back()
+    }
+  }
 
   useEffect(() => {
     if (restaurant && menuItemId) {
@@ -91,10 +144,11 @@ const CreateModal = () => {
           }}
         >
           {menuItem && (
-            <ItemQuantity
-              restaurant={restaurant}
+            <ItemSinger
               menuItem={menuItem}
-              isModal={true}
+              showMinus={true}
+              quantity={quantity}
+              handlePressItem={handlePressItem}
             />
           )}
         </View>
@@ -143,14 +197,14 @@ const CreateModal = () => {
                   }}
                 >
                   <Pressable
+                    onPress={() => setSelectIndex(index)}
                     style={({ pressed }) => ({
                       opacity: pressed === true ? 0.5 : 1,
                       alignSelf: "flex-start",
                       padding: 2,
                       borderRadius: 2,
-                      backgroundColor: APP_COLOR.PRIMARY,
-
-                      borderColor: APP_COLOR.PRIMARY,
+                      backgroundColor: index === selectIndex ? APP_COLOR.PRIMARY : 'white',
+                      borderColor: index === selectIndex ? APP_COLOR.PRIMARY: 'grey',
                       borderWidth: 1,
                     })}
                   >
@@ -171,6 +225,7 @@ const CreateModal = () => {
           }}
         >
           <Pressable
+            onPress={handleAddCart}
             style={({ pressed }) => ({
               opacity: pressed === true ? 0.5 : 1,
               padding: 10,
