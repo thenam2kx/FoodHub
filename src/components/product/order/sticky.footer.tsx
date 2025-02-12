@@ -89,7 +89,7 @@ const StickyFooter = (props: IProps) => {
               </Text>
             </View>
           </View>
-          <Pressable onPress={() => router.navigate('/product/order')}>
+          <Pressable onPress={() => router.navigate('/product/place.order')}>
             <View
               style={{
                 width: 120,

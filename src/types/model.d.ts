@@ -88,10 +88,29 @@ declare global {
           quantity: number;
           data: IMenuItem;
           extra?: {
-            [key: string]: number
-          }
+            [key: string]: number;
+          };
         };
       };
     };
+  }
+
+  interface IOrderHistory {
+    _id: string;
+    restaurant: IRestaurant;
+    user: string;
+    status: string;
+    totalPrice: number;
+    totalQuantity: number;
+    orderTime: Date;
+    detail: {
+      image: string;
+      title: string;
+      option: string;
+      price: number;
+      quantity: number;
+    }[];
+    createdAt: Date;
+    updatedAt: Date;
   }
 }

@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
   }
 })
 
-interface Iprops {
+interface IProps {
   keyboardType?: KeyboardTypeOptions
   secureTextEntry?: boolean
   setValue?: (v: any) => void
+  placeholder?: string
   onChangeText?: any
   title?: string
   value: any
@@ -44,15 +45,16 @@ interface Iprops {
   error?: any
 }
 
-const ShareInput = (props: Iprops) => {
+const ShareInput = (props: IProps) => {
   const {
     title,
     value,
     keyboardType,
     secureTextEntry = false,
+    placeholder = '',
     onChangeText,
     onBlur,
-    error
+    error,
   } = props
   const [isFocus, setIsFocus] = useState<boolean>(false)
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false)
@@ -62,6 +64,7 @@ const ShareInput = (props: Iprops) => {
       { title && <Text style={styles.inputLabel}>{title}</Text> }
       <View>
         <TextInput
+          placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
           onFocus={() => setIsFocus(true)}
