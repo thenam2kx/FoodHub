@@ -13,7 +13,7 @@ interface IOrderItem {
   price: number;
   quantity: number;
 }
-const OrderPage = () => {
+const PlaceOrderPage = () => {
   const { restaurant, cart, setCart } = useCurrentApp();
   const [orderItems, setOrderItems] = useState<IOrderItem[]>([]);
 
@@ -217,4 +217,4 @@ const OrderPage = () => {
     </View>
   );
 };
-export default OrderPage;
+export default PlaceOrderPage;

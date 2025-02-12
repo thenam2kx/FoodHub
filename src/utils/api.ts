@@ -63,3 +63,8 @@ export const placeOrderAPI = (data: any) => {
   const url = `/api/v1/orders`;
   return axios.post<IBackendRes<IUserSignin>>(url, { ...data });
 }
+
+export const getOrderHistoryAPI = () => {
+  const url = `/api/v1/orders`;
+  return axios.get<IBackendRes<IOrderHistory[]>>(url);
+}

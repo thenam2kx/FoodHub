@@ -120,7 +120,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
-                  name="product/order"
+                  name="product/place.order"
                   options={{ headerTitle: 'Xác nhận đơn hàng' }}
                 />
                 <Stack.Screen name="+not-found" />
