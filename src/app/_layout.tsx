@@ -95,6 +95,14 @@ export default function RootLayout() {
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen
+                  name="(auth)/forgot-password"
+                  options={{ headerTitle: 'Quên mật khẩu' }}
+                />
+                <Stack.Screen
+                  name="(auth)/change-password"
+                  options={{ headerTitle: 'Thay đổi mật khẩu' }}
+                />
+                <Stack.Screen
                   name="(auth)/welcome"
                   options={{ headerShown: false }}
                 />

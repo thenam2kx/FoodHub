@@ -37,6 +37,16 @@ export const getAccountAPI = async () => {
   return await axios.get<IBackendRes<IUserSignin>>(url);
 };
 
+export const requireForgotPasswordAPI = (email: string) => {
+  const url = `/api/v1/auth/retry-password`;
+  return axios.post<IBackendRes<IOrderHistory[]>>(url, { email });
+}
+
+export const changePasswordAPI = (data: any) => {
+  const url = `/api/v1/auth/forgot-password`;
+  return axios.post<IBackendRes<IOrderHistory[]>>(url, { ...data });
+}
+
 export const getTopRestaurantAPI = async (ref: string) => {
   const url = `/api/v1/restaurants/${ref}`;
   return await axios.post<IBackendRes<ITopRestaurant[]>>(url);

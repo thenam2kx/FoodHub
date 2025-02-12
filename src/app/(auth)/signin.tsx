@@ -96,14 +96,14 @@ const SigninPage = () => {
                 keyboardType="email-address"
               />
 
-            <ShareInput
-              title="Mật khẩu"
-              secureTextEntry={true}
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              error={errors.password}
-            />
+              <ShareInput
+                title="Mật khẩu"
+                secureTextEntry={true}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
+                error={errors.password}
+              />
             </View>
 
             <OptionDirection

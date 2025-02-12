@@ -1,7 +1,10 @@
 import { useCurrentApp } from '@/context/app.context'
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import profileBackground from '@/assets/Profile.png'
 import ShareInput from '@/components/input/share.input'
+import ShareButton from '@/components/button/share.button'
+import { APP_COLOR } from '@/theme/theme'
+import { useRouter } from 'expo-router';
 
 const styles = StyleSheet.create({
   header: {
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
 
 const AccountPage = () => {
   const { appState } = useCurrentApp()
+  const router = useRouter();
   const url_backend = `${process.env.EXPO_PUBLIC_API_URL}/images/avatar`
 
   return (
@@ -54,6 +58,48 @@ const AccountPage = () => {
       <ShareInput title='Họ tên' value={appState?.user.name}/>
       <ShareInput title='Email' value={appState?.user.email}/>
       <ShareInput title='Số điện thoại' value={appState?.user.phone}/>
+    </View>
+
+    <View>
+      <ShareButton
+        onPress={() => router.push('/(auth)/forgot-password')}
+        title="Đổi mật khẩu"
+        pressStyle={{ alignSelf: 'stretch' }}
+        textStyle={{
+          textTransform: 'none',
+          fontWeight: 500,
+          fontSize: 14,
+          textDecorationLine: 'underline',
+          textDecorationStyle: 'solid',
+          textDecorationColor: 'black',
+        }}
+        btnStyle={{
+          marginTop: 10,
+          justifyContent: 'center',
+        }}
+      />
+
+      <ShareButton
+        onPress={() => {}}
+        title="Đăng xuất"
+        pressStyle={{ alignSelf: 'stretch' }}
+        textStyle={{
+          textTransform: 'uppercase',
+          fontWeight: 500,
+          fontSize: 14,
+          color: 'rgba(254, 254, 254, 1)'
+        }}
+        btnStyle={{
+          paddingVertical: 14,
+          marginHorizontal: 20,
+          marginVertical: 10,
+          justifyContent: 'center',
+          borderRadius: 50,
+          borderWidth: 1,
+          borderColor: '#FFFFFF',
+          backgroundColor: APP_COLOR.PRIMARY,
+        }}
+      />
     </View>
   </ImageBackground>
   )
