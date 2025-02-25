@@ -42,6 +42,14 @@ export const updateUserAPI = async (_id: string, name: string, phone: string) =>
   return await axios.patch<IBackendRes<IUserSignin>>(url, { _id, name, phone });
 };
 
+export const updateUserPasswordAPI = (
+  currentPassword: string,
+  newPassword: string,
+) => {
+  const url = `/api/v1/users/password`;
+  return axios.post<IBackendRes<IUserSignin>>(url, { currentPassword, newPassword });
+}
+
 export const requireForgotPasswordAPI = (email: string) => {
   const url = `/api/v1/auth/retry-password`;
   return axios.post<IBackendRes<IOrderHistory[]>>(url, { email });

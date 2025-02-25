@@ -110,6 +110,10 @@ export default function RootLayout() {
                   name="(user)/account/user.info"
                   options={{ title: 'Cập nhật thông tin' }}
                 />
+                <Stack.Screen
+                  name="(user)/account/user.password"
+                  options={{ title: 'Đổi mật khẩu' }}
+                />
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen
                   name="(user)/product/[id]"

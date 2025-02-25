@@ -81,7 +81,7 @@ const AccountPage = () => {
       </Pressable>
 
       <Pressable
-        onPress={() => router.push('/(auth)/forgot-password')}
+        onPress={() => router.navigate('/(user)/account/user.password')}
         style={{
           paddingVertical: 15,
           paddingHorizontal: 10,

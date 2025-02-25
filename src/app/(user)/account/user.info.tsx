@@ -3,6 +3,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -51,12 +52,10 @@ const UserInfoPage = () => {
   const { appState, setAppState } = useCurrentApp();
   const router = useRouter();
   const url_backend = `${process.env.EXPO_PUBLIC_API_URL}/images/avatar`;
-  console.log('🚀 ~ handleUpdate ~ appState:', appState)
 
   const handleUpdate = async (name: string, phone: string) => {
     if (appState?.user._id) {
       const res = await updateUserAPI(appState?.user._id, name, phone);
-      console.log('🚀 ~ handleUpdate ~ res:', res)
       if (res.data) {
         ToastAndroid.show("Cập nhật thông tin thành công", ToastAndroid.SHORT);
         setAppState({
@@ -104,6 +103,8 @@ const UserInfoPage = () => {
             values,
             errors,
             touched,
+            isValid,
+            dirty,
           }) => (
             <View style={styles.formGroup}>
               <ShareInput
@@ -134,26 +135,27 @@ const UserInfoPage = () => {
 
               <View style={{ marginVertical: 10 }}></View>
 
-              <ShareButton
-                onPress={() => handleSubmit()}
-                title="Cập nhật"
-                pressStyle={{ alignSelf: "stretch" }}
-                textStyle={{
-                  textTransform: "uppercase",
-                  fontWeight: 500,
-                  fontSize: 14,
-                  color: "rgba(254, 254, 254, 1)",
-                }}
-                btnStyle={{
-                  paddingVertical: 14,
-                  marginHorizontal: 5,
-                  justifyContent: "center",
-                  borderRadius: 50,
-                  borderWidth: 1,
-                  borderColor: "#FFFFFF",
-                  backgroundColor: APP_COLOR.PRIMARY,
-                }}
-              />
+              <Pressable
+                disabled={!(isValid && dirty)}
+                onPress={handleSubmit as any}
+                style={({ pressed }) => ({
+                  opacity: pressed === true ? 0.5 : 1,
+                  backgroundColor:
+                    isValid && dirty ? APP_COLOR.PRIMARY : APP_COLOR.GREY,
+                  padding: 10,
+                  marginTop: 10,
+                  borderRadius: 3,
+                })}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: isValid && dirty ? "white" : "grey",
+                  }}
+                >
+                  Lưu thay đổi
+                </Text>
+              </Pressable>
             </View>
           )}
         </Formik>
