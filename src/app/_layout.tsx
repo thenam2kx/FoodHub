@@ -106,13 +106,17 @@ export default function RootLayout() {
                   name="(auth)/welcome"
                   options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                  name="(user)/account/user.info"
+                  options={{ title: 'Cập nhật thông tin' }}
+                />
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen
-                  name="product/[id]"
+                  name="(user)/product/[id]"
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                  name="product/create.modal"
+                  name="(user)/product/create.modal"
                   options={{
                     headerShown: false,
                     animation: 'fade',
@@ -120,7 +124,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
-                  name="product/update.modal"
+                  name="(user)/product/update.modal"
                   options={{
                     headerShown: false,
                     animation: 'fade',
@@ -128,7 +132,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
-                  name="product/place.order"
+                  name="(user)/product/place.order"
                   options={{ headerTitle: 'Xác nhận đơn hàng' }}
                 />
                 <Stack.Screen name="+not-found" />

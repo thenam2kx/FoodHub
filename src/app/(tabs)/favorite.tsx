@@ -1,9 +1,10 @@
+import ComingSoon from '@/components/ComingSoon'
 import { Text, View } from 'react-native'
 
 const FavoritePage = () => {
   return (
-    <View>
-      <Text>FavoritePage</Text>
+    <View style={{ flex: 1 }}>
+      <ComingSoon />
     </View>
   )
 }
