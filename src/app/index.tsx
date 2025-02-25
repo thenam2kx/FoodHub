@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useCurrentApp } from "@/context/app.context"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as SplashScreen from 'expo-splash-screen'
+import { useFonts } from "expo-font"
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,6 +13,8 @@ SplashScreen.preventAutoHideAsync();
 const RootPage = () => {
   const { setAppState } = useCurrentApp()
   const [state, setState] = useState<any>()
+
+  const [loaded, error] = useFonts({'SpaceMono-Regular': require('@/assets/fonts/SpaceMono-Regular.ttf')})
 
   useEffect(() => {
     async function prepare() {
