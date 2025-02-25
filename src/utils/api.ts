@@ -37,6 +37,16 @@ export const getAccountAPI = async () => {
   return await axios.get<IBackendRes<IUserSignin>>(url);
 };
 
+export const updateUserAPI = async (_id: string, name: string, phone: string) => {
+  const url = "/api/v1/users";
+  return await axios.patch<IBackendRes<IUserSignin>>(url, { _id, name, phone });
+};
+
+export const updateUserPasswordAPI = ( currentPassword: string, newPassword: string, ) => {
+  const url = `/api/v1/users/password`;
+  return axios.post<IBackendRes<IUserSignin>>(url, { currentPassword, newPassword });
+}
+
 export const requireForgotPasswordAPI = (email: string) => {
   const url = `/api/v1/auth/retry-password`;
   return axios.post<IBackendRes<IOrderHistory[]>>(url, { email });
@@ -77,4 +87,25 @@ export const placeOrderAPI = (data: any) => {
 export const getOrderHistoryAPI = () => {
   const url = `/api/v1/orders`;
   return axios.get<IBackendRes<IOrderHistory[]>>(url);
+}
+
+
+export const likeRestaurantAPI = (restaurant: string, quantity: number) => {
+  const url = `/api/v1/likes`;
+  return axios.post<IBackendRes<IUserSignin>>(url, { restaurant, quantity });
+}
+
+export const getFavoriteRestaurantAPI = () => {
+  const url = `/api/v1/likes?current=1&pageSize=10`;
+  return axios.get<IBackendRes<IRestaurant[]>>(url);
+}
+
+export const getRestaurantByNameAPI = (name: string) => {
+  const url = `/api/v1/restaurants?current=1&pageSize=10&name=/${name}/i`;
+  return axios.get<IBackendRes<IModelPaginate<IRestaurant>>>(url);
+}
+
+export const filterRestaurantAPI = (query: string) => {
+  const url = `/api/v1/restaurants?${query}`;
+  return axios.get<IBackendRes<IModelPaginate<IRestaurant>>>(url);
 }

@@ -106,13 +106,25 @@ export default function RootLayout() {
                   name="(auth)/welcome"
                   options={{ headerShown: false }}
                 />
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen
-                  name="product/[id]"
+                  name="(user)/account/user.info"
+                  options={{ title: 'Cập nhật thông tin' }}
+                />
+                <Stack.Screen
+                  name="(user)/search/search.page"
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                  name="product/create.modal"
+                  name="(user)/account/user.password"
+                  options={{ title: 'Đổi mật khẩu' }}
+                />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="(user)/product/[id]"
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="(user)/product/create.modal"
                   options={{
                     headerShown: false,
                     animation: 'fade',
@@ -120,7 +132,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
-                  name="product/update.modal"
+                  name="(user)/product/update.modal"
                   options={{
                     headerShown: false,
                     animation: 'fade',
@@ -128,8 +140,20 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
-                  name="product/place.order"
+                  name="(user)/product/place.order"
                   options={{ headerTitle: 'Xác nhận đơn hàng' }}
+                />
+                <Stack.Screen
+                  name="(user)/restaurants/restaurants.page"
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="(user)/popup/popup"
+                  options={{
+                    headerShown: false,
+                    animation: 'fade',
+                    presentation: 'transparentModal',
+                  }}
                 />
                 <Stack.Screen name="+not-found" />
               </Stack>

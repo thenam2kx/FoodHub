@@ -78,7 +78,7 @@ const SigninPage = () => {
         onSubmit={values => handleSignin(values.email, values.password)}
         validationSchema={SigninSchema}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <View style={styles.container}>
             <View>
               <Text style={styles.heading}>
@@ -94,6 +94,7 @@ const SigninPage = () => {
                 value={values.email}
                 error={errors.email}
                 keyboardType="email-address"
+                touched={touched.email}
               />
 
               <ShareInput
@@ -103,6 +104,7 @@ const SigninPage = () => {
                 onBlur={handleBlur('password')}
                 value={values.password}
                 error={errors.password}
+                touched={touched.password}
               />
             </View>
 

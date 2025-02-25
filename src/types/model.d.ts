@@ -52,6 +52,7 @@ declare global {
     updatedAt: Date;
     __v: 0;
     menu: IMenu[];
+    isLike: boolean;
   }
 
   interface IMenu {
@@ -112,5 +113,15 @@ declare global {
     }[];
     createdAt: Date;
     updatedAt: Date;
+  }
+
+  interface IModelPaginate<T> {
+    meta: {
+      current: number;
+      pageSize: number;
+      pages: number;
+      total: number;
+    };
+    results: T[];
   }
 }
