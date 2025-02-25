@@ -1,6 +1,7 @@
 import { APP_COLOR } from "@/theme/theme";
 import { Entypo, EvilIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { router } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   locationContainer: {
@@ -39,12 +40,15 @@ const HeaderHome = () => {
         </View>
       </View>
 
-      <View style={styles.searchContainer}>
+      <Pressable
+      onPress={() => router.navigate('/(user)/search/search.page')}
+        style={styles.searchContainer}
+      >
         <EvilIcons name="search" size={20} color="black" />
         <Text style={{ color: "#707070" }}>
           Deal Hot Hôm Nay Từ 0đ...
         </Text>
-      </View>
+      </Pressable>
     </View>
   );
 };

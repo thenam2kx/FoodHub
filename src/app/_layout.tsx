@@ -111,6 +111,10 @@ export default function RootLayout() {
                   options={{ title: 'Cập nhật thông tin' }}
                 />
                 <Stack.Screen
+                  name="(user)/search/search.page"
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
                   name="(user)/account/user.password"
                   options={{ title: 'Đổi mật khẩu' }}
                 />
