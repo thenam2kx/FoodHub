@@ -143,6 +143,18 @@ export default function RootLayout() {
                   name="(user)/product/place.order"
                   options={{ headerTitle: 'Xác nhận đơn hàng' }}
                 />
+                <Stack.Screen
+                  name="(user)/restaurants/restaurants.page"
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="(user)/popup/popup"
+                  options={{
+                    headerShown: false,
+                    animation: 'fade',
+                    presentation: 'transparentModal',
+                  }}
+                />
                 <Stack.Screen name="+not-found" />
               </Stack>
             </SafeAreaView>
