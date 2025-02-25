@@ -24,3 +24,11 @@ export const SignupSchema = Yup.object().shape({
     .max(50, 'Mật khẩu không được dài hơn 50 ký tự!')
     .required('Mật khẩu không được để trống!'),
 })
+
+export const UpdateUserSchema = Yup.object().shape({
+  fullname: Yup.string()
+    .required('Họ tên không được để trống!'),
+
+  phone: Yup.string()
+    .required('Số điện thoại không được để trống!'),
+})

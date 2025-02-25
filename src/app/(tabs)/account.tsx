@@ -81,6 +81,7 @@ const AccountPage = () => {
       </Pressable>
 
       <Pressable
+        onPress={() => router.push('/(auth)/forgot-password')}
         style={{
           paddingVertical: 15,
           paddingHorizontal: 10,
